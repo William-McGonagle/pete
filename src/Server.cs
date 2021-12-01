@@ -1,22 +1,39 @@
+using System;
+using System.Net;
+using System.Net.Sockets;
+
 public class Server
 {
 
-    public int port = 9090;
-    public string ip = "127.0.0.1";
+    public Int32 port = 9090;
+    public IPAddress localAddress;
+
+    private TcpListener server;
 
     public Server()
     {
 
         port = 9090;
-        ip = "127.0.0.1";
+        localAddress = IPAddress.Parse("127.0.0.1");
 
+        server = new TcpListener(localAddress, port);
+        
     }
 
     public Server(int _port, string _ip)
     {
 
         port = _port;
-        ip = _ip;
+        localAddress = IPAddress.Parse(_ip);
+
+        server = new TcpListener(localAddress, port);
+
+    }
+
+    public void Listen()
+    {
+
+
 
     }
 
