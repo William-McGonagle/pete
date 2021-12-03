@@ -6,6 +6,48 @@ public class BasicResponse
     public const string OMTP_VERSION = "OMTP/0.9";
 
     /// <summary>
+    /// Returns a "100 Continue" Response.
+    /// </summary>
+    /// <returns>A "100 Continue" Response.</returns>
+    public static Response Continue()
+    {
+
+        Response output = new Response();
+
+        output.OmtpVersion = OMTP_VERSION;
+        output.ResponseCode = 100;
+        output.ResponseText = "Continue";
+
+        output.Headers = new Dictionary<string, string>();
+
+        output.Body = "";
+
+        return output;
+
+    }
+
+    /// <summary>
+    /// Returns a "101 Switching Protocols" Response.
+    /// </summary>
+    /// <returns>A "101 Switching Protocols" Response.</returns>
+    public static Response SwitchingProtocols()
+    {
+
+        Response output = new Response();
+
+        output.OmtpVersion = OMTP_VERSION;
+        output.ResponseCode = 101;
+        output.ResponseText = "Switching Protocols";
+
+        output.Headers = new Dictionary<string, string>();
+
+        output.Body = "";
+
+        return output;
+
+    }
+
+    /// <summary>
     /// Returns a "200 OK" Response.
     /// </summary>
     /// <returns>A "200 OK" Response.</returns>
