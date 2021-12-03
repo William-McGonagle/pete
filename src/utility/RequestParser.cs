@@ -132,6 +132,25 @@ public class RequestParser
 
     }
 
+    public string WriteRequest(Request data)
+    {
+
+        StringBuilder output = new StringBuilder($"{data.RequestType} {data.RequestURI} {data.OmtpVersion}\n");
+
+        foreach (KeyValuePair<string, string> kvp in data.Headers)
+        {
+
+            output.Append($"{kvp.Key}: {kvp.Value}\n");
+
+        }
+
+        output.Append('\n');
+        output.Append(data.Body);
+
+        return output.ToString();
+
+    }
+
     public int PerformSpeedTest(int testCount)
     {
 

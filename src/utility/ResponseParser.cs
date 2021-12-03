@@ -14,7 +14,7 @@ public class ResponseParser
         foreach (KeyValuePair<string, string> kvp in data.Headers)
         {
 
-            output.Append($"{kvp.Key}: {kvp.Value}");
+            output.Append($"{kvp.Key}: {kvp.Value}\n");
 
         }
 
