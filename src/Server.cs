@@ -68,8 +68,8 @@ public class Server
     public Response QueryEndpoints(Request input)
     {
 
-        // TODO: Return a 500 Response Code if Endpoints is null
-        if (endpoints == null) return new Response();
+        // Return a 500 Response Code if Endpoints is null
+        if (endpoints == null) return BasicResponse.InternalError();
 
         // Loop through the Endpoints
         for (int i = 0; i < endpoints.Length; i++)

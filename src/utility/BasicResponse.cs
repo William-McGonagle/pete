@@ -33,7 +33,24 @@ public class BasicResponse
 
         output.Headers = new Dictionary<string, string>();
 
-        output.Body = "Page not found.";
+        output.Body = "Not Found.";
+
+        return output;
+
+    }
+
+    public static Response InternalError()
+    {
+
+        Response output = new Response();
+
+        output.OmtpVersion = OMTP_VERSION;
+        output.ResponseCode = 500;
+        output.ResponseText = "Internal Server Error";
+
+        output.Headers = new Dictionary<string, string>();
+
+        output.Body = "Internal Server Error.";
 
         return output;
 
