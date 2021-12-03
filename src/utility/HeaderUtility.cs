@@ -12,31 +12,42 @@ public class HeaderUtility
         for (int i = 0; i < data.Length; i++)
         {
 
-            char currentChar = data[i];
+            int currentChar = data[i];
 
             if (capitalizeNext)
             {
 
                 if (currentChar > 96 && currentChar < 123)
-                    output.Append(currentChar - 32);
+                    output.Append((char)(currentChar - 32));
 
                 if (currentChar > 64 && currentChar < 91)
-                    output.Append(currentChar);
+                    output.Append((char)currentChar);
+
+                capitalizeNext = false;
 
             }
             else
             {
 
                 if (currentChar == '-')
+                {
                     capitalizeNext = true;
+                    output.Append('-');
+                }
+
+                if (currentChar == ' ')
+                {
+                    capitalizeNext = true;
+                    output.Append('-');
+                }
 
                 if (currentChar > 96 && currentChar < 123)
-                    output.Append(currentChar);
+                    output.Append((char)currentChar);
 
                 if (currentChar > 64 && currentChar < 91)
-                    output.Append(currentChar + 32);
+                    output.Append((char)(currentChar + 32));
 
-                output.Append(currentChar);
+                // output.Append((char)currentChar); 
 
             }
 
