@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 public class OmtpParser
 {
@@ -11,8 +12,12 @@ public class OmtpParser
         int state = currentState;
         Request output = new Request();
 
-        List<string> headers = new List<string>();
-        List<string> values = new List<string>();
+        StringBuilder RequestType = new StringBuilder();
+        StringBuilder RequestURI = new StringBuilder();
+        StringBuilder OmtpVersion = new StringBuilder();
+
+        List<StringBuilder> headers = new List<StringBuilder>();
+        List<StringBuilder> values = new List<StringBuilder>();
 
         for (int i = 0; i < data.Length; i++)
         {
@@ -32,7 +37,7 @@ public class OmtpParser
 
                     }
 
-                    output.RequestType += currentByte;
+                    RequestType.Append(currentByte);
 
                     break;
                 case 1:
@@ -45,7 +50,7 @@ public class OmtpParser
 
                     }
 
-                    output.RequestURI += currentByte;
+                    RequestURI.Append(currentByte);
 
                     break;
                 case 2:
@@ -54,12 +59,12 @@ public class OmtpParser
                     {
 
                         state = 3;
-                        headers.Add("");
+                        headers.Add(new StringBuilder());
                         break;
 
                     }
 
-                    output.OmtpVersion += currentByte;
+                    OmtpVersion.Append(currentByte);
 
                     break;
                 case 3:
@@ -76,12 +81,12 @@ public class OmtpParser
                     {
 
                         state = 4;
-                        values.Add("");
+                        values.Add(new StringBuilder());
                         break;
 
                     }
 
-                    headers[headers.Count - 1] += currentByte;
+                    headers[headers.Count - 1].Append(currentByte);
 
                     break;
                 case 4:
@@ -90,12 +95,12 @@ public class OmtpParser
                     {
 
                         state = 3;
-                        headers.Add("");
+                        headers.Add(new StringBuilder());
                         break;
 
                     }
 
-                    values[values.Count - 1] += currentByte;
+                    values[values.Count - 1].Append(currentByte);
 
                     break;
 
@@ -103,8 +108,13 @@ public class OmtpParser
 
         }
 
+        // Set Data
+        output.RequestType = RequestType.ToString();
+        output.RequestURI = RequestURI.ToString();
+        output.OmtpVersion = OmtpVersion.ToString();
+
         // Set Headers
-        output.headers = Enumerable.Range(0, values.Count).ToDictionary(i => headers[i], i => values[i]);
+        output.headers = Enumerable.Range(0, values.Count).ToDictionary(i => headers[i].ToString(), i => values[i].ToString());
 
         // Return the Object
         return output;
