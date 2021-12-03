@@ -5,6 +5,23 @@ public class BasicResponse
 
     public const string OMTP_VERSION = "OMTP/0.9";
 
+    public static Response Okay()
+    {
+
+        Response output = new Response();
+
+        output.OmtpVersion = OMTP_VERSION;
+        output.ResponseCode = 200;
+        output.ResponseText = "OK";
+
+        output.Headers = new Dictionary<string, string>();
+
+        output.Body = "";
+
+        return output;
+
+    }
+
     public static Response NotFound()
     {
 

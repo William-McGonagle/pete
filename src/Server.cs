@@ -81,7 +81,7 @@ public class Server
 
         }
 
-        // Return a 404 Response Code 
+        // Return a 404 Response Code
         return BasicResponse.NotFound();
 
     }
