@@ -113,11 +113,45 @@ public class OmtpParser
         output.RequestURI = RequestURI.ToString();
         output.OmtpVersion = OmtpVersion.ToString();
 
-        // Set Headers
+        // Set Headers 
         output.headers = Enumerable.Range(0, values.Count).ToDictionary(i => headers[i].ToString(), i => values[i].ToString());
 
         // Return the Object
         return output;
+
+    }
+
+    public void PerformSpeedTest()
+    {
+
+        // Speed Test
+        string input = "GET /test OMTP/0.9\ntest: testing\nsecond: test again\n\nthis is a body";
+
+        int total = 0;
+        for (int n = 0; n < 10; n++)
+        {
+
+            var watch = new System.Diagnostics.Stopwatch();
+
+            watch.Start();
+
+            for (int i = 0; i < 1000000; i++)
+            {
+
+                int state = 0;
+                OmtpParser.ParseRequest(input, ref state);
+
+            }
+
+            watch.Stop();
+
+            Console.WriteLine($"{watch.ElapsedMilliseconds} ms");
+
+            total += (int)watch.ElapsedMilliseconds;
+
+        }
+
+        Console.WriteLine($"AVERAGE: {total / 10} ms");
 
     }
 
