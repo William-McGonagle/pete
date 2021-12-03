@@ -320,6 +320,73 @@ public class BasicResponse
 
     }
 
+    /// <summary>
+    /// Returns a "400 Bad Request" Response.
+    /// </summary>
+    /// <returns>A "400 Bad Request" Response.</returns>
+    public static Response BadRequest()
+    {
+
+        Response output = new Response();
+
+        output.OmtpVersion = OMTP_VERSION;
+        output.ResponseCode = 400;
+        output.ResponseText = "Bad Request";
+
+        output.Headers = new Dictionary<string, string>();
+
+        output.Body = "";
+
+        return output;
+
+    }
+
+    /// <summary>
+    /// Returns a "401 Unauthorized" Response.
+    /// </summary>
+    /// <returns>A "401 Unauthorized" Response.</returns>
+    public static Response Unauthorized()
+    {
+
+        Response output = new Response();
+
+        output.OmtpVersion = OMTP_VERSION;
+        output.ResponseCode = 401;
+        output.ResponseText = "Unauthorized";
+
+        output.Headers = new Dictionary<string, string>();
+
+        output.Body = "";
+
+        return output;
+
+    }
+
+    /// <summary>
+    /// Returns a "403 Forbidden" Response.
+    /// </summary>
+    /// <returns>A "403 Forbidden" Response.</returns>
+    public static Response Forbidden()
+    {
+
+        Response output = new Response();
+
+        output.OmtpVersion = OMTP_VERSION;
+        output.ResponseCode = 403;
+        output.ResponseText = "Forbidden";
+
+        output.Headers = new Dictionary<string, string>();
+
+        output.Body = "";
+
+        return output;
+
+    }
+
+    /// <summary>
+    /// Returns a "404 Not Found" Response.
+    /// </summary>
+    /// <returns>A "404 Not Found" Response.</returns>
     public static Response NotFound()
     {
 
@@ -331,7 +398,112 @@ public class BasicResponse
 
         output.Headers = new Dictionary<string, string>();
 
-        output.Body = "Not Found.";
+        output.Body = "";
+
+        return output;
+
+    }
+
+    /// <summary>
+    /// Returns a "405 Method Not Allowed" Response.
+    /// </summary>
+    /// <returns>A "405 Method Not Allowed" Response.</returns>
+    public static Response MethodNotAllowed()
+    {
+
+        Response output = new Response();
+
+        output.OmtpVersion = OMTP_VERSION;
+        output.ResponseCode = 405;
+        output.ResponseText = "Method Not Allowed";
+
+        output.Headers = new Dictionary<string, string>();
+
+        output.Body = "";
+
+        return output;
+
+    }
+
+    /// <summary>
+    /// Returns a "406 Not Acceptable" Response.
+    /// </summary>
+    /// <returns>A "406 Not Acceptable" Response.</returns>
+    public static Response NotAcceptable()
+    {
+
+        Response output = new Response();
+
+        output.OmtpVersion = OMTP_VERSION;
+        output.ResponseCode = 406;
+        output.ResponseText = "Not Acceptable";
+
+        output.Headers = new Dictionary<string, string>();
+
+        output.Body = "";
+
+        return output;
+
+    }
+
+    /// <summary>
+    /// Returns a "408 Request Timeout" Response.
+    /// </summary>
+    /// <returns>A "408 Request Timeout" Response.</returns>
+    public static Response RequestTimeout()
+    {
+
+        Response output = new Response();
+
+        output.OmtpVersion = OMTP_VERSION;
+        output.ResponseCode = 408;
+        output.ResponseText = "Request Timeout";
+
+        output.Headers = new Dictionary<string, string>();
+
+        output.Body = "";
+
+        return output;
+
+    }
+
+    /// <summary>
+    /// Returns a "409 Conflict" Response.
+    /// </summary>
+    /// <returns>A "409 Conflict" Response.</returns>
+    public static Response Conflict()
+    {
+
+        Response output = new Response();
+
+        output.OmtpVersion = OMTP_VERSION;
+        output.ResponseCode = 409;
+        output.ResponseText = "Conflict";
+
+        output.Headers = new Dictionary<string, string>();
+
+        output.Body = "";
+
+        return output;
+
+    }
+
+    /// <summary>
+    /// Returns a "410 Gone" Response.
+    /// </summary>
+    /// <returns>A "410 Gone" Response.</returns>
+    public static Response Gone()
+    {
+
+        Response output = new Response();
+
+        output.OmtpVersion = OMTP_VERSION;
+        output.ResponseCode = 410;
+        output.ResponseText = "Gone";
+
+        output.Headers = new Dictionary<string, string>();
+
+        output.Body = "";
 
         return output;
 
