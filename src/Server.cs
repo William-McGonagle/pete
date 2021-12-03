@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
 
@@ -52,21 +53,30 @@ public class Server
             NetworkStream stream = client.GetStream();
 
             // Read Stream into bytes
+            int state = 0;
             int i;
             while ((i = stream.Read(bytes, 0, bytes.Length)) != 0)
             {
 
                 // Get Data as String
                 data = System.Text.Encoding.ASCII.GetString(bytes, 0, i);
-                Console.WriteLine("Received: {0}", data);
 
                 // Parse the Request
-                Request req = OmtpParser.ParseRequest(bytes, 0);
+                Request req = OmtpParser.ParseRequest(data, ref state);
 
                 // Log the Request
                 Console.WriteLine("Type: " + req.RequestType);
                 Console.WriteLine("Path: " + req.RequestURI);
                 Console.WriteLine("Version: " + req.OmtpVersion);
+
+                Console.WriteLine("HEADERS");
+
+                foreach (KeyValuePair<string, string> kvp in req.headers)
+                {
+
+                    Console.WriteLine($"{kvp.Key}: {kvp.Value}");
+
+                }
 
                 // Respond 
                 byte[] msg = System.Text.Encoding.ASCII.GetBytes(data);

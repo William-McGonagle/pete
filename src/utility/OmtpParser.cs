@@ -1,9 +1,11 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 public class OmtpParser
 {
 
-    public static Request ParseRequest(byte[] data, int currentState)
+    public static Request ParseRequest(string data, ref int currentState)
     {
 
         int state = currentState;
@@ -12,10 +14,10 @@ public class OmtpParser
         List<string> headers = new List<string>();
         List<string> values = new List<string>();
 
-        for (int i = 0; i < data[i]; i++)
+        for (int i = 0; i < data.Length; i++)
         {
 
-            char currentByte = (char)data[i];
+            char currentByte = data[i];
 
             switch (state)
             {
@@ -79,6 +81,7 @@ public class OmtpParser
 
                     }
 
+                    Console.Write(currentByte);
                     headers[headers.Count - 1] += currentByte;
 
                     break;
@@ -93,6 +96,7 @@ public class OmtpParser
 
                     }
 
+                    Console.Write(currentByte);
                     values[values.Count - 1] += currentByte;
 
                     break;
@@ -102,7 +106,7 @@ public class OmtpParser
         }
 
         // Set Headers
-
+        output.headers = Enumerable.Range(0, values.Count).ToDictionary(i => headers[i], i => values[i]);
 
         // Return the Object
         return output;
