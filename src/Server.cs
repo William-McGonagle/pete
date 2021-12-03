@@ -115,14 +115,14 @@ public class Server
                 data = System.Text.Encoding.ASCII.GetString(bytes, 0, i);
 
                 // Parse the Request
-                Request req = OmtpParser.ParseRequest(data, ref state);
+                Request req = RequestParser.ParseRequest(data, ref state);
 
                 // Log the Request
                 LogRequest(req);
 
                 // Interpret the Request 
                 Response output = QueryEndpoints(req);
-                string responseText = OmtpParser.ParseResponse(output);
+                string responseText = ResponseParser.WriteResponse(output);
 
                 // Respond 
                 byte[] msg = System.Text.Encoding.ASCII.GetBytes(responseText);

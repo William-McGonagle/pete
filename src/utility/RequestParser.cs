@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-public class OmtpParser
+public class RequestParser
 {
 
     public static Request ParseRequest(string data, ref int currentState)
@@ -121,6 +121,7 @@ public class OmtpParser
         output.OmtpVersion = OmtpVersion.ToString();
 
         // Set Headers 
+        // TODO: Make this more performant
         output.Headers = Enumerable.Range(0, values.Count).ToDictionary(i => headers[i].ToString(), i => values[i].ToString());
 
         // Set Body
@@ -131,33 +132,14 @@ public class OmtpParser
 
     }
 
-    public static string ParseResponse(Response data)
-    {
-
-        StringBuilder output = new StringBuilder($"{data.OmtpVersion} {data.ResponseCode} {data.ResponseText}\n");
-
-        foreach (KeyValuePair<string, string> kvp in data.Headers)
-        {
-
-            output.Append($"{kvp.Key}: {kvp.Value}");
-
-        }
-
-        output.Append('\n');
-        output.Append(data.Body);
-
-        return output.ToString();
-
-    }
-
-    public void PerformSpeedTest()
+    public int PerformSpeedTest(int testCount)
     {
 
         // Speed Test
         string input = "GET /test OMTP/0.9\ntest: testing\nsecond: test again\n\nthis is a body";
 
         int total = 0;
-        for (int n = 0; n < 10; n++)
+        for (int n = 0; n < testCount; n++)
         {
 
             var watch = new System.Diagnostics.Stopwatch();
@@ -168,19 +150,17 @@ public class OmtpParser
             {
 
                 int state = 0;
-                OmtpParser.ParseRequest(input, ref state);
+                ParseRequest(input, ref state);
 
             }
 
             watch.Stop();
 
-            Console.WriteLine($"{watch.ElapsedMilliseconds} ms");
-
             total += (int)watch.ElapsedMilliseconds;
 
         }
 
-        Console.WriteLine($"AVERAGE: {total / 10} ms");
+        return total / testCount;
 
     }
 
