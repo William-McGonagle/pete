@@ -509,6 +509,10 @@ public class BasicResponse
 
     }
 
+    /// <summary>
+    /// Returns a "500 Internal Error" Response.
+    /// </summary>
+    /// <returns>A "500 Internal Error" Response.</returns>
     public static Response InternalError()
     {
 
@@ -516,11 +520,11 @@ public class BasicResponse
 
         output.OmtpVersion = OMTP_VERSION;
         output.ResponseCode = 500;
-        output.ResponseText = "Internal Server Error";
+        output.ResponseText = "Internal Error";
 
         output.Headers = new Dictionary<string, string>();
 
-        output.Body = "Internal Server Error.";
+        output.Body = "";
 
         return output;
 
