@@ -9,4 +9,6 @@ public struct Request
 
     public Dictionary<string, string> headers;
 
+    public string body;
+
 }
