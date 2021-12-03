@@ -81,7 +81,6 @@ public class OmtpParser
 
                     }
 
-                    Console.Write(currentByte);
                     headers[headers.Count - 1] += currentByte;
 
                     break;
@@ -96,7 +95,6 @@ public class OmtpParser
 
                     }
 
-                    Console.Write(currentByte);
                     values[values.Count - 1] += currentByte;
 
                     break;
