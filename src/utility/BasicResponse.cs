@@ -173,6 +173,153 @@ public class BasicResponse
 
     }
 
+    /// <summary>
+    /// Returns a "300 Multiple Choice" Response.
+    /// </summary>
+    /// <returns>A "300 Multiple Choice" Response.</returns>
+    public static Response MutlipleChoice()
+    {
+
+        Response output = new Response();
+
+        output.OmtpVersion = OMTP_VERSION;
+        output.ResponseCode = 300;
+        output.ResponseText = "Multiple Choice";
+
+        output.Headers = new Dictionary<string, string>();
+
+        output.Body = "";
+
+        return output;
+
+    }
+
+    /// <summary>
+    /// Returns a "301 Moved Permanently" Response.
+    /// </summary>
+    /// <returns>A "301 Moved Permanently" Response.</returns>
+    public static Response MovedPermanently()
+    {
+
+        Response output = new Response();
+
+        output.OmtpVersion = OMTP_VERSION;
+        output.ResponseCode = 301;
+        output.ResponseText = "Moved Permanently";
+
+        output.Headers = new Dictionary<string, string>();
+
+        output.Body = "";
+
+        return output;
+
+    }
+
+    /// <summary>
+    /// Returns a "302 Found" Response.
+    /// </summary>
+    /// <returns>A "302 Found" Response.</returns>
+    public static Response Found()
+    {
+
+        Response output = new Response();
+
+        output.OmtpVersion = OMTP_VERSION;
+        output.ResponseCode = 302;
+        output.ResponseText = "Found";
+
+        output.Headers = new Dictionary<string, string>();
+
+        output.Body = "";
+
+        return output;
+
+    }
+
+    /// <summary>
+    /// Returns a "303 See Other" Response.
+    /// </summary>
+    /// <returns>A "303 See Other" Response.</returns>
+    public static Response SeeOther()
+    {
+
+        Response output = new Response();
+
+        output.OmtpVersion = OMTP_VERSION;
+        output.ResponseCode = 303;
+        output.ResponseText = "See Other";
+
+        output.Headers = new Dictionary<string, string>();
+
+        output.Body = "";
+
+        return output;
+
+    }
+
+    /// <summary>
+    /// Returns a "304 Not Modified" Response.
+    /// </summary>
+    /// <returns>A "304 Not Modified" Response.</returns>
+    public static Response NotModified()
+    {
+
+        Response output = new Response();
+
+        output.OmtpVersion = OMTP_VERSION;
+        output.ResponseCode = 304;
+        output.ResponseText = "Not Modified";
+
+        output.Headers = new Dictionary<string, string>();
+
+        output.Body = "";
+
+        return output;
+
+    }
+
+    /// <summary>
+    /// Returns a "307 Temporary Redirect" Response.
+    /// </summary>
+    /// <returns>A "307 Temporary Redirect" Response.</returns>
+    public static Response TemporaryRedirect()
+    {
+
+        Response output = new Response();
+
+        output.OmtpVersion = OMTP_VERSION;
+        output.ResponseCode = 307;
+        output.ResponseText = "Temporary Redirect";
+
+        output.Headers = new Dictionary<string, string>();
+
+        output.Body = "";
+
+        return output;
+
+    }
+
+    /// <summary>
+    /// Returns a "308 Permanent Redirect" Response.
+    /// </summary>
+    /// <returns>A "308 Permanent Redirect" Response.</returns>
+    public static Response PermanentRedirect()
+    {
+
+        Response output = new Response();
+
+        output.OmtpVersion = OMTP_VERSION;
+        output.ResponseCode = 308;
+        output.ResponseText = "Permanent Redirect";
+
+        output.Headers = new Dictionary<string, string>();
+
+        output.Body = "";
+
+        return output;
+
+    }
+
     public static Response NotFound()
     {
 
