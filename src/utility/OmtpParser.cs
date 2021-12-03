@@ -131,6 +131,25 @@ public class OmtpParser
 
     }
 
+    public static string ParseResponse(Response data)
+    {
+
+        StringBuilder output = new StringBuilder($"{data.OmtpVersion} {data.ResponseCode} {data.ResponseText}\n");
+
+        foreach (KeyValuePair<string, string> kvp in data.Headers)
+        {
+
+            output.Append($"{kvp.Key}: {kvp.Value}");
+
+        }
+
+        output.Append('\n');
+        output.Append(data.Body);
+
+        return output.ToString();
+
+    }
+
     public void PerformSpeedTest()
     {
 

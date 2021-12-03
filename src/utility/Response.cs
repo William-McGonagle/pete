@@ -7,8 +7,8 @@ public struct Response
     public int ResponseCode;
     public string ResponseText;
 
-    public Dictionary<string, string> headers;
+    public Dictionary<string, string> Headers;
 
-    public string body;
+    public string Body;
 
 }

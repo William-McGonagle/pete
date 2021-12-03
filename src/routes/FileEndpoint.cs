@@ -22,7 +22,7 @@ public class FileEndpoint : BaseEndpoint
     public override Response Run(Request req)
     {
 
-        return new Response();
+        return BasicResponse.NotFound();
 
     }
 

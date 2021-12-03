@@ -81,8 +81,8 @@ public class Server
 
         }
 
-        // Return a 404 Response Code
-        return new Response();
+        // Return a 404 Response Code 
+        return BasicResponse.NotFound();
 
     }
 
@@ -120,11 +120,12 @@ public class Server
                 // Log the Request
                 LogRequest(req);
 
-                // Interpret the Request
+                // Interpret the Request 
                 Response output = QueryEndpoints(req);
+                string responseText = OmtpParser.ParseResponse(output);
 
                 // Respond 
-                byte[] msg = System.Text.Encoding.ASCII.GetBytes(data);
+                byte[] msg = System.Text.Encoding.ASCII.GetBytes(responseText);
                 stream.Write(msg, 0, msg.Length);
 
             }
