@@ -11,6 +11,8 @@ public class Server
 
     public bool running = true;
 
+    public BaseEndpoint[] endpoints;
+
     private TcpListener server;
 
     public Server()
@@ -21,6 +23,8 @@ public class Server
 
         server = new TcpListener(localAddress, port);
 
+        endpoints = new BaseEndpoint[0];
+
     }
 
     public Server(int _port, string _ip)
@@ -30,6 +34,51 @@ public class Server
         localAddress = IPAddress.Parse(_ip);
 
         server = new TcpListener(localAddress, port);
+
+        endpoints = new BaseEndpoint[0];
+
+    }
+
+    public void AddEndpoint(BaseEndpoint endpoint)
+    {
+
+        List<BaseEndpoint> tempList = new List<BaseEndpoint>(endpoints);
+        tempList.Add(endpoint);
+        endpoints = tempList.ToArray();
+
+    }
+
+    public void LogRequest(Request input)
+    {
+
+        Console.WriteLine($"{input.RequestType} {input.RequestURI} {input.OmtpVersion}");
+        foreach (KeyValuePair<string, string> kvp in input.headers)
+        {
+
+            Console.WriteLine($"{kvp.Key}: {kvp.Value}");
+
+        }
+
+    }
+
+    public Response QueryEndpoints(Request input)
+    {
+
+        // TODO: Return a 500 Response Code if Endpoints is null
+        if (endpoints == null) return new Response();
+
+        // Loop through the Endpoints
+        for (int i = 0; i < endpoints.Length; i++)
+        {
+
+            // If an endpoint matches the criteria, run it
+            if (endpoints[i].Query(input.RequestURI))
+                return endpoints[i].Run(input);
+
+        }
+
+        // Return a 404 Response Code
+        return new Response();
 
     }
 
@@ -65,18 +114,10 @@ public class Server
                 Request req = OmtpParser.ParseRequest(data, ref state);
 
                 // Log the Request
-                Console.WriteLine("Type: " + req.RequestType);
-                Console.WriteLine("Path: " + req.RequestURI);
-                Console.WriteLine("Version: " + req.OmtpVersion);
+                LogRequest(req);
 
-                Console.WriteLine("HEADERS");
-
-                foreach (KeyValuePair<string, string> kvp in req.headers)
-                {
-
-                    Console.WriteLine($"{kvp.Key}: {kvp.Value}");
-
-                }
+                // Interpret the Request
+                Response output = QueryEndpoints(req);
 
                 // Respond 
                 byte[] msg = System.Text.Encoding.ASCII.GetBytes(data);

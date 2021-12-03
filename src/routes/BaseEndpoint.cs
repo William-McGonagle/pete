@@ -10,4 +10,18 @@ public class BaseEndpoint
 
     }
 
+    public virtual bool Query(string uri)
+    {
+
+        return false;
+
+    }
+
+    public virtual Response Run(Request req)
+    {
+
+        return new Response();
+
+    }
+
 }
