@@ -19,6 +19,8 @@ public class OmtpParser
         List<StringBuilder> headers = new List<StringBuilder>();
         List<StringBuilder> values = new List<StringBuilder>();
 
+        StringBuilder body = new StringBuilder();
+
         for (int i = 0; i < data.Length; i++)
         {
 
@@ -103,6 +105,11 @@ public class OmtpParser
                     values[values.Count - 1].Append(currentByte);
 
                     break;
+                case 5:
+
+                    body.Append(currentByte);
+
+                    break;
 
             }
 
@@ -114,7 +121,10 @@ public class OmtpParser
         output.OmtpVersion = OmtpVersion.ToString();
 
         // Set Headers 
-        output.headers = Enumerable.Range(0, values.Count).ToDictionary(i => headers[i].ToString(), i => values[i].ToString());
+        output.Headers = Enumerable.Range(0, values.Count).ToDictionary(i => headers[i].ToString(), i => values[i].ToString());
+
+        // Set Body
+        output.Body = body.ToString();
 
         // Return the Object
         return output;

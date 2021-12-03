@@ -52,12 +52,16 @@ public class Server
     {
 
         Console.WriteLine($"{input.RequestType} {input.RequestURI} {input.OmtpVersion}");
-        foreach (KeyValuePair<string, string> kvp in input.headers)
+        foreach (KeyValuePair<string, string> kvp in input.Headers)
         {
 
             Console.WriteLine($"{kvp.Key}: {kvp.Value}");
 
         }
+
+        Console.WriteLine();
+        Console.WriteLine(input.Body);
+        Console.WriteLine();
 
     }
 
