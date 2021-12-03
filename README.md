@@ -19,11 +19,19 @@ To use Pete, just download the code from github and include it in your project. 
 
 ## Features
 
+Pete is the first OMTP library ever built. This means that it is also the oldest and likely most reliable. All of the code was built to be as human-readable as possible and it all is incredibly lightweight. The library overall is only ~500 lines of code, but it uses a ton of spaces to make reading easier. There are also a number of helper functions included in the library to make optimizing and general use of Pete as simple as possible.
+
 ### Endpoint-Based Server
+
+The architecture behind pete is endpoint based; this means that users create classes at certain URIs and the server figures out what response to write based on the endpoints. This is an incredibly simple architecture to understand, and it supports a large number of connections with relative ease.
 
 ### Response Codes
 
+Pete comes built in with all of the response codes that you will ever need. This means that if you want to respond with a 400 response code, all you need to do is write `BasicResponse.ClientError()`, and pete will automatically generate a response. Every single OMTP response code is accounted for in pete, and this allows for incredible simplicity when writing programs.
+
 ### Request and Response Parser
+
+The request and response parser is probably one of the highlights of pete. Since pete uses structs to represent requests and responses and a non-blocking state machine, the performance is incredible. Pete is able to handle millions of response and request parses every second without problem. The only limit to pete is your computer.
 
 ## License
 
