@@ -60,7 +60,15 @@ public class Server
                 data = System.Text.Encoding.ASCII.GetString(bytes, 0, i);
                 Console.WriteLine("Received: {0}", data);
 
-                // Respond
+                // Parse the Request
+                Request req = OmtpParser.ParseRequest(bytes, 0);
+
+                // Log the Request
+                Console.WriteLine("Type: " + req.RequestType);
+                Console.WriteLine("Path: " + req.RequestURI);
+                Console.WriteLine("Version: " + req.OmtpVersion);
+
+                // Respond 
                 byte[] msg = System.Text.Encoding.ASCII.GetBytes(data);
                 stream.Write(msg, 0, msg.Length);
 
