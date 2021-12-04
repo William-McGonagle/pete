@@ -16,7 +16,7 @@ namespace pete
             // // Make Server Listen
             // server.Listen(); 
 
-            Console.Write(UriUtility.encodeUri("This is a quick test"));
+            Console.Write(UriUtility.decodeChar('3', 'C'));
 
         }
     }

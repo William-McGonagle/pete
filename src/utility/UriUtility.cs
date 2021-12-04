@@ -49,6 +49,57 @@ public class UriUtility
 
     }
 
+    public static char decodeChar(char a, char b)
+    {
+
+        int aVal = 0;
+        int bVal = 0;
+
+        switch (a)
+        {
+            case '0': aVal = 0; break;
+            case '1': aVal = 1; break;
+            case '2': aVal = 2; break;
+            case '3': aVal = 3; break;
+            case '4': aVal = 4; break;
+            case '5': aVal = 5; break;
+            case '6': aVal = 6; break;
+            case '7': aVal = 7; break;
+            case '8': aVal = 8; break;
+            case '9': aVal = 9; break;
+            case 'A': aVal = 10; break;
+            case 'B': aVal = 11; break;
+            case 'C': aVal = 12; break;
+            case 'D': aVal = 13; break;
+            case 'E': aVal = 14; break;
+            case 'F': aVal = 15; break;
+            default: aVal = 0; break;
+        }
+
+        switch (b)
+        {
+            case '0': bVal = 0; break;
+            case '1': bVal = 1; break;
+            case '2': bVal = 2; break;
+            case '3': bVal = 3; break;
+            case '4': bVal = 4; break;
+            case '5': bVal = 5; break;
+            case '6': bVal = 6; break;
+            case '7': bVal = 7; break;
+            case '8': bVal = 8; break;
+            case '9': bVal = 9; break;
+            case 'A': bVal = 10; break;
+            case 'B': bVal = 11; break;
+            case 'C': bVal = 12; break;
+            case 'D': bVal = 13; break;
+            case 'E': bVal = 14; break;
+            case 'F': bVal = 15; break;
+            default: bVal = 0; break;
+        }
+
+        return (char)((aVal << 4) + bVal);
+
+    }
 
     public static string encodeChar(char input)
     {
