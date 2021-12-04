@@ -33,7 +33,7 @@ public class UriUtility
             }
 
             // Check if the Character is an Uppercase Letter
-            if (inputChar > 96 && inputChar < 123)
+            if (inputChar > 64 && inputChar < 91)
             {
 
                 output.Append(inputChar);
@@ -41,11 +41,14 @@ public class UriUtility
 
             }
 
+            output.Append(encodeChar(inputChar));
+
         }
 
         return output.ToString();
 
     }
+
 
     public static string encodeChar(char input)
     {
