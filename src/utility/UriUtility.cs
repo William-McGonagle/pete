@@ -49,6 +49,35 @@ public class UriUtility
 
     }
 
+    public static string decodeUri(string input)
+    {
+
+        StringBuilder output = new StringBuilder();
+
+        int i = 0;
+        while (i < input.Length)
+        {
+
+            char inputChar = input[i];
+
+            if (inputChar == '%')
+            {
+
+                output.Append(decodeChar(input[i + 1], input[i + 2]));
+                i += 3;
+                continue;
+
+            }
+
+            output.Append(inputChar);
+            i++;
+
+        }
+
+        return output.ToString();
+
+    }
+
     public static char decodeChar(char a, char b)
     {
 

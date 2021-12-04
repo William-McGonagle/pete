@@ -16,7 +16,7 @@ namespace pete
             // // Make Server Listen
             // server.Listen(); 
 
-            Console.Write(UriUtility.decodeChar('3', 'C'));
+            Console.Write(UriUtility.decodeUri("%3F%20and%20the%20Mysterians"));
 
         }
     }
