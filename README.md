@@ -8,7 +8,6 @@
         <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/william-mcgonagle/pete">
         <img alt="GitHub contributors" src="https://img.shields.io/github/contributors/william-mcgonagle/pete">
         <img alt="GitHub code size in bytes" src="https://img.shields.io/github/languages/code-size/william-mcgonagle/pete">
-        <img alt="GitHub repo file count" src="https://img.shields.io/github/directory-file-count/william-mcgonagle/pete">
         <img alt="GitHub issues" src="https://img.shields.io/github/issues/william-mcgonagle/pete">
     </td>
 </table>
