@@ -24,6 +24,12 @@ jobs:
       - name: Build solution and generate NuGet package
         run: |  
           dotnet pack -c Release -o out
+         
+      - name: Add Github to Config
+        run: dotnet nuget add source --username William-McGonagle --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/William-McGonagle/index.json"
+         
+      - name: Publish the package to Github
+        run: dotnet nuget push "out/*.nupkg"  --api-key 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 --source "github" --skip-duplicate
           
       - name: Publish the package to nuget.org
         run: dotnet nuget push "out/*.nupkg" -k $NUGET_AUTH_TOKEN -s https://api.nuget.org/v3/index.json
