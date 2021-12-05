@@ -4,6 +4,38 @@ using System.Text;
 public class UriUtility
 {
 
+    public static string getQueryString(string input)
+    {
+
+        StringBuilder output = new StringBuilder();
+        bool isQueryString = false;
+
+        for (int i = 0; i < input.Length; i++)
+        {
+
+            if (input[i] == '?')
+            {
+
+                isQueryString = true;
+                continue;
+
+            }
+
+            if (input[i] == '#')
+            {
+
+                isQueryString = false;
+
+            }
+
+            if (isQueryString) output.Append(input[i]);
+
+        }
+
+        return output.ToString();
+
+    }
+
     public static string clearAdditions(string input)
     {
 

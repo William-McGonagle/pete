@@ -1,8 +1,20 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <PackageId>Pete</PackageId>
+    <Version>1.0.2</Version>
+    <Authors>William McGonagle</Authors>
+    <LangVersion>latest</LangVersion>
+    <RepositoryUrl>https://github.com/william-mcgonagle/pete</RepositoryUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <Company>amvc</Company>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Description>A library for building servers that utilize the OpenMetaverse Transport Protocol: a protocol for communicating world information in the metaverse.</Description>
     <OutputType>Exe</OutputType>
     <TargetFramework>net5.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
-
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="\"/>
+  </ItemGroup>
 </Project>
