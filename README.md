@@ -16,6 +16,19 @@
 
 ## How to Use
 
+```csharp
+
+// Create a New Server
+Server server = new Server(9090, "127.0.0.1");
+
+// Add Room Data
+server.AddEndpoint(new FileEndpoint("/test", "./Program.cs"));
+
+// Make Server Listen
+server.Listen();
+
+```
+
 To use Pete, just download the code from github and include it in your project. From there, you can run any of the functions inside of the codebase. At the moment, not all of the functions have Javadoc comments on them, but most of them do. If you choose to use pete, we would love it if you could show the project some love and contribute or try to fund the project. Also, if you could mention that you used pete to build your app or project, that would be great (since were under the MIT license, your not required to mention us at all).
 
 ## Features
