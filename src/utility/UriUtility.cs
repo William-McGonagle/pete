@@ -63,6 +63,27 @@ public class UriUtility
             if (inputChar == '%')
             {
 
+                if (i + 1 == input.Length)
+                {
+
+                    output.Append(inputChar);
+                    i += 3;
+                    continue;
+
+                }
+
+                // Prevent Out of Bounds
+                if (i + 2 == input.Length)
+                {
+
+                    output.Append(inputChar);
+                    output.Append(input[i + 1]);
+
+                    i += 3;
+                    continue;
+
+                }
+
                 output.Append(decodeChar(input[i + 1], input[i + 2]));
                 i += 3;
                 continue;
