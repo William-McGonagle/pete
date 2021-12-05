@@ -19,13 +19,13 @@ jobs:
         with:
           source-url: https://nuget.pkg.github.com/william-mcgonagle/index.json
         env:
-          NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}        
+          NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
           
       - name: Build solution and generate NuGet package
         run: |  
-          dotnet pack -c Release -o out  
+          dotnet pack -c Release -o out
           
       - name: Publish the package to nuget.org
-        run: dotnet nuget push "./out/pete.1.0.2.nupkg" -k $NUGET_AUTH_TOKEN -s https://api.nuget.org/v3/index.json
+        run: dotnet nuget push "out/*.nupkg" -k $NUGET_AUTH_TOKEN -s https://api.nuget.org/v3/index.json
         env:
           NUGET_AUTH_TOKEN: ${{ secrets.NUGET_TOKEN }}
