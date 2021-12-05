@@ -12,8 +12,6 @@
     </td>
 </table>
 
-[![Stargazers repo roster for @William-McGonagle/pete](https://reporoster.com/stars/William-McGonagle/pete)](https://github.com/William-McGonagle/pete/stargazers)
-
 ## How to Use
 
 ```csharp
