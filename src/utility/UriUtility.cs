@@ -4,6 +4,26 @@ using System.Text;
 public class UriUtility
 {
 
+    public static string clearAdditions(string input)
+    {
+
+        StringBuilder output = new StringBuilder();
+
+        for (int i = 0; i < input.Length; i++)
+        {
+
+            char inputChar = input[i];
+
+            if (inputChar == '?' || inputChar == '#') return output.ToString();
+
+            output.Append(inputChar);
+
+        }
+
+        return output.ToString();
+
+    }
+
     public static string encodeUri(string input)
     {
 
